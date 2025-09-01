@@ -10,7 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Recycle, Wrench, ShoppingCart, Sparkles } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Recycle, Wrench, ShoppingCart, Sparkles, Camera, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface LogActionModalProps {
@@ -44,6 +45,8 @@ export const LogActionModal = ({ isOpen, onClose, actionType }: LogActionModalPr
   const [item, setItem] = useState("");
   const [moneySaved, setMoneySaved] = useState("");
   const [notes, setNotes] = useState("");
+  const [shareToFeed, setShareToFeed] = useState(true);
+  const [needsPhotoProof, setNeedsPhotoProof] = useState(false);
   const { toast } = useToast();
 
   if (!actionType) return null;
@@ -53,6 +56,9 @@ export const LogActionModal = ({ isOpen, onClose, actionType }: LogActionModalPr
   const savedAmount = parseFloat(moneySaved) || 0;
   const bonusPoints = Math.min(savedAmount, 30);
   const totalPoints = config.basePoints + bonusPoints;
+  
+  // Check if photo proof is recommended for large savings
+  const shouldSuggestPhoto = savedAmount >= 10;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,6 +74,8 @@ export const LogActionModal = ({ isOpen, onClose, actionType }: LogActionModalPr
     setItem("");
     setMoneySaved("");
     setNotes("");
+    setShareToFeed(true);
+    setNeedsPhotoProof(false);
     onClose();
   };
 
@@ -114,6 +122,14 @@ export const LogActionModal = ({ isOpen, onClose, actionType }: LogActionModalPr
                 +{bonusPoints} bonus points for saving £{savedAmount}!
               </p>
             )}
+            {shouldSuggestPhoto && (
+              <div className="flex items-center gap-2 mt-2 p-2 bg-accent/10 rounded border border-accent/20">
+                <Shield className="h-3 w-3 text-accent" />
+                <p className="text-xs text-accent">
+                  Consider adding photo proof for savings over £10
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -125,6 +141,36 @@ export const LogActionModal = ({ isOpen, onClose, actionType }: LogActionModalPr
               placeholder="Share your experience..."
               rows={3}
             />
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Camera className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm font-medium">Photo Proof (Optional)</span>
+              </div>
+              <Switch
+                checked={needsPhotoProof}
+                onCheckedChange={setNeedsPhotoProof}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm font-medium">Share to Community</span>
+              </div>
+              <Switch
+                checked={shareToFeed}
+                onCheckedChange={setShareToFeed}
+              />
+            </div>
+            
+            {!shareToFeed && (
+              <p className="text-xs text-muted-foreground">
+                Your action will be private and not shown in the community feed
+              </p>
+            )}
           </div>
 
           <div className="bg-gradient-background rounded-lg p-4 border">

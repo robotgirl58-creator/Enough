@@ -7,6 +7,9 @@ import { StatsCard } from "@/components/StatsCard";
 import { CommunityFeed } from "@/components/CommunityFeed";
 import { LogActionModal } from "@/components/LogActionModal";
 import { Navigation } from "@/components/Navigation";
+import { NudgesCard } from "@/components/NudgesCard";
+import { WeeklyReflection } from "@/components/WeeklyReflection";
+import { MetricsDashboard } from "@/components/MetricsDashboard";
 import { Leaf, Sparkles, Award } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 
@@ -66,11 +69,20 @@ const Index = () => {
 
             {/* Stats */}
             <StatsCard {...userStats} />
+            
+            {/* Nudges */}
+            <NudgesCard />
           </div>
         );
       
       case "community":
         return <CommunityFeed />;
+      
+      case "reflection":
+        return <WeeklyReflection />;
+      
+      case "metrics":
+        return <MetricsDashboard />;
       
       case "leaderboard":
         return (
