@@ -8,33 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 45 15% 97%;
+    --foreground: 140 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 140 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 140 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 142 45% 25%;
+    --primary-foreground: 45 15% 97%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 85 30% 85%;
+    --secondary-foreground: 140 15% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 85 20% 92%;
+    --muted-foreground: 140 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 25 85% 60%;
+    --accent-foreground: 45 15% 97%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 85 20% 88%;
+    --input: 85 20% 88%;
+    --ring: 142 45% 25%;
+
+    /* Custom design tokens for Enough */
+    --success: 142 45% 35%;
+    --success-foreground: 45 15% 97%;
+    
+    --warning: 25 85% 60%;
+    --warning-foreground: 45 15% 97%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(142 45% 25%), hsl(142 55% 35%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 85% 60%), hsl(35 80% 65%));
+    --gradient-background: linear-gradient(180deg, hsl(45 15% 97%), hsl(85 20% 94%));
+    
+    --shadow-soft: 0 4px 20px -4px hsl(142 45% 25% / 0.1);
+    --shadow-medium: 0 8px 30px -8px hsl(142 45% 25% / 0.15);
+    --shadow-strong: 0 12px 40px -12px hsl(142 45% 25% / 0.2);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
